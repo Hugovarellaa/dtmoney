@@ -1,4 +1,11 @@
 # dtmoney
 Chapter II - Rocketseat
 
-Criando do zero
+## 🚀 Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- HTML
+- CSS
+- JavaScript
+## 💻 Projeto
