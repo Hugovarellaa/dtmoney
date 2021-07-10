@@ -1,5 +1,5 @@
-<h1 textAlign="center">
-  <h1>dtmoney </h1>
+<h1 align="center">
+  dtmoney 
 </h1>
 
 <p align="center">
