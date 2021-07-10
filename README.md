@@ -8,6 +8,10 @@
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
+<p>
+<img src="./dtmoney/src/assets/inicio.svg">
+<img src="./dtmoney/src/assets/inicio-2.svg">
+</p>
 
 ## 🚀 Tecnologias
 
