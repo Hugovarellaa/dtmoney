@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img alt="dtmoney" src="../src/assets/inicio.svg" width="100%">
+  <img alt="dtmoney" src="./src/assets/inicio.svg" width="100%">
 </p>
 
 ## 🚀 Tecnologias
