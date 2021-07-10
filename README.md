@@ -9,9 +9,13 @@
 </p>
 
 <p align="center">
+<<<<<<< HEAD
 
   <img alt="dtmoney" src="./src/assets/inicio.svg" width="100%">
 
+=======
+  <img alt="dtmoney" src="./src/assets/inicio.svg" width="100%">
+>>>>>>> 5597343cf3115777f3cffadfd72015bd68172c14
 </p>
 
 ## 🚀 Tecnologias
