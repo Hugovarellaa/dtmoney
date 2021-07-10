@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 textAlign="center">
   <h1>dtmoney </h1>
 </h1>
 
