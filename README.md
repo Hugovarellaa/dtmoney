@@ -8,7 +8,9 @@
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-
+<p align="center">
+  <img alt="dtmoney" src="../src/assets/inicio.svg" width="100%">
+</p>
 
 ## 🚀 Tecnologias
 
@@ -24,8 +26,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Polished
 - Axios
 - Miragejs
-
-
 
 
 ## 💻 Projeto
