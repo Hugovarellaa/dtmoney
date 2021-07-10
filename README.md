@@ -8,15 +8,6 @@
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-<p align="center">
-<<<<<<< HEAD
-
-  <img alt="dtmoney" src="./src/assets/inicio.svg" width="100%">
-
-=======
-  <img alt="dtmoney" src="./src/assets/inicio.svg" width="100%">
->>>>>>> 5597343cf3115777f3cffadfd72015bd68172c14
-</p>
 
 ## 🚀 Tecnologias
 
@@ -36,3 +27,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 Chapter II - Rocketseat
+
+
+## 🔖 Layout
+
+Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/0xmu9mj2TJYoIOubBFWsk5/dtmoney-Ignite-(Copy)?node-id=0%3A1). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
