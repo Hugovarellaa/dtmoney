@@ -7,7 +7,18 @@ export function makeServer() {
       this.namespace = 'api'
       this.timing = 750
 
-      this.get('/transactions')
+      this.get('/transactions', () => {
+        return [
+          {
+            id: 1,
+            title: 'Transactions 1',
+            amount: 400,
+            type: 'deposit',
+            category: 'Food',
+            created_at: new Date(),
+          },
+        ]
+      })
 
       this.namespace = ''
     },
