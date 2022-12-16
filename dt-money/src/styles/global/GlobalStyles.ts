@@ -33,6 +33,10 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 600;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   a {
     text-decoration: none;
     color: inherit
