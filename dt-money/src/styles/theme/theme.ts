@@ -7,6 +7,8 @@ export const defaultTheme = {
     shape: '#FFFFFF',
     background: '#F0F2F5',
     white: '#FFF',
+    input: '#e7e9ee',
+    border: '#d7d7d7',
   },
   fonts: {
     text: '#969CB2',
