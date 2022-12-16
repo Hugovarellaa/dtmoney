@@ -9,7 +9,7 @@ import {
 } from './styles'
 
 interface TransactionTableProps {
-  type: 'withdraw' | 'deposit'
+  type?: 'withdraw' | 'deposit'
 }
 
 export function TransactionTable({ type }: TransactionTableProps) {
