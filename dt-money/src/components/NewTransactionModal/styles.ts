@@ -1,3 +1,4 @@
+import { darken } from 'polished'
 import styled from 'styled-components'
 
 export const NewTransactionModalContainer = styled.form`
@@ -43,6 +44,42 @@ export const NewTransactionModalContainer = styled.form`
 
     &:hover {
       filter: brightness(0.9);
+    }
+  }
+`
+
+export const TransactionTypeContainer = styled.form`
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+
+  button {
+    height: 4rem;
+    border: 1px solid ${({ theme }) => theme.colors.input};
+    border-radius: 0.25rem;
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: border-color 0.2s;
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
+
+    span {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 1rem;
+      color: ${({ theme }) => theme.fonts['text-title']};
+    }
+
+    &:hover {
+      border-color: ${({ theme }) => darken(0.1, theme.colors.input)};
     }
   }
 `
