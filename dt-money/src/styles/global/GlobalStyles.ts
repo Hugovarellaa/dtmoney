@@ -21,10 +21,16 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.background} ;
     color:  ${({ theme }) => theme.fonts.text};
   }
+
   body, input, button {
-    font-family: sans-serif;
+    font-family: 'Poppins' , sans-serif;
     font-size: 1rem;
+    font-weight: 400;
     line-height: 1.4;
+  }
+
+  h1, h2, h3, h4, h5, h6 , strong{
+    font-weight: 600;
   }
 
   a {
