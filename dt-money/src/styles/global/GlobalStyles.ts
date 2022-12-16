@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.colors.background} ;
-    color:  ${({ theme }) => theme.fonts.text};
+    color:  ${({ theme }) => theme.fonts['text-title']};
   }
 
   body, input, button {
