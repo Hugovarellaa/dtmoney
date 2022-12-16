@@ -1,25 +1,13 @@
-import { useState } from 'react'
 import Modal from 'react-modal'
+import { useModal } from '../../context/useModal'
 import { Logo } from '../Logo'
 import { ButtonNewTransaction, HeaderContainer, HeaderContent } from './styles'
 
 export function Header() {
-  const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
-    useState(false)
-
-  function handleOpenModal() {
-    setIsNewTransactionModalOpen(true)
-  }
-
-  function handleCloseModal() {
-    setIsNewTransactionModalOpen(false)
-  }
+  const { modalIsOpen, handleCloseModal, handleOpenModal } = useModal()
   return (
     <HeaderContainer>
-      <Modal
-        isOpen={isNewTransactionModalOpen}
-        onRequestClose={handleCloseModal}
-      >
+      <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
         <h2>Nova Transação</h2>
       </Modal>
       <HeaderContent>
