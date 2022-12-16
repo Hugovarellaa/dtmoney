@@ -17,11 +17,9 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  :root{}
-
   body {
-    background-color: black ;
-    color: white;
+    background-color: ${({ theme }) => theme.colors.background} ;
+    color:  ${({ theme }) => theme.fonts.text};
   }
   body, input, button {
     font-family: sans-serif;
