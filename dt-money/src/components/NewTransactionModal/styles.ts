@@ -98,3 +98,11 @@ export const RadioButton = styled.button<RadioButtonProps>`
     border-color: ${({ theme }) => darken(0.1, theme.colors.input)};
   }
 `
+
+export const Warring = styled.p`
+  color: ${({ theme }) => theme.colors.red};
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 8px;
+`
