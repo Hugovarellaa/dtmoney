@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { api } from '../../services/axios'
+import { useModal } from '../../context/useModal'
 import {
   TransactionTableContainer,
   TransactionTableTable,
@@ -10,23 +9,8 @@ import {
   TransactionTableTr,
 } from './styles'
 
-interface Transaction {
-  id: number
-  title: string
-  amount: number
-  type: 'withdraw' | 'deposit'
-  category: string
-  created_at: Date
-}
-
 export function TransactionTable() {
-  const [transactions, setTransactions] = useState<Transaction[]>([])
-
-  useEffect(() => {
-    api
-      .get('/transactions')
-      .then((response) => setTransactions(response.data.transactions))
-  }, [transactions])
+  const { transactions } = useModal()
 
   return (
     <TransactionTableContainer>
