@@ -21,7 +21,7 @@ export function Summary() {
       deposits: 0,
       withdraws: 0,
       total: 0,
-    }
+    },
   )
 
   return (
