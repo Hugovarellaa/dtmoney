@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { api } from '../../services/axios'
 import {
   TransactionTableContainer,
   TransactionTableTable,
@@ -8,11 +10,24 @@ import {
   TransactionTableTr,
 } from './styles'
 
-interface TransactionTableProps {
-  type?: 'withdraw' | 'deposit'
+interface Transaction {
+  id: number
+  title: string
+  amount: number
+  type: 'withdraw' | 'deposit'
+  category: string
+  created_at: Date
 }
 
-export function TransactionTable({ type }: TransactionTableProps) {
+export function TransactionTable() {
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+
+  useEffect(() => {
+    api
+      .get('/transactions')
+      .then((response) => setTransactions(response.data.transactions))
+  }, [transactions])
+
   return (
     <TransactionTableContainer>
       <TransactionTableTable>
@@ -26,23 +41,26 @@ export function TransactionTable({ type }: TransactionTableProps) {
           </TransactionTableTr>
         </TransactionTableThead>
         <TransactionTableTbody>
-          <TransactionTableTr>
-            <TransactionTableTd>Desenvolvimento de website</TransactionTableTd>
-            <TransactionTableTd type="deposit">R$ 12.000,00</TransactionTableTd>
-            <TransactionTableTd>Dev</TransactionTableTd>
-            <TransactionTableTd>05/12/2022</TransactionTableTd>
-            <TransactionTableTd>Att Del</TransactionTableTd>
-          </TransactionTableTr>
-
-          <TransactionTableTr>
-            <TransactionTableTd>Aluguel</TransactionTableTd>
-            <TransactionTableTd type="withdraw">
-              - R$ 2.000,00
-            </TransactionTableTd>
-            <TransactionTableTd>Casa</TransactionTableTd>
-            <TransactionTableTd>10/12/2022</TransactionTableTd>
-            <TransactionTableTd>Att Del</TransactionTableTd>
-          </TransactionTableTr>
+          {transactions.map((transaction) => (
+            <TransactionTableTr key={transaction.id}>
+              <TransactionTableTd>{transaction.title}</TransactionTableTd>
+              <TransactionTableTd type={transaction.type}>
+                {transaction.type === 'withdraw' && ' -'}
+                {new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(transaction.amount)}
+              </TransactionTableTd>
+              <TransactionTableTd>{transaction.category}</TransactionTableTd>
+              <TransactionTableTd>
+                {new Intl.DateTimeFormat('pt-BR').format(
+                  // eslint-disable-next-line prettier/prettier
+                  new Date(transaction.created_at)
+                )}
+              </TransactionTableTd>
+              <TransactionTableTd>Att Del</TransactionTableTd>
+            </TransactionTableTr>
+          ))}
         </TransactionTableTbody>
       </TransactionTableTable>
     </TransactionTableContainer>

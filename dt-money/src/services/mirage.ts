@@ -5,6 +5,28 @@ export function makeServer() {
     models: {
       transaction: Model,
     },
+    // seeds(server) {
+    //   server.db.loadData({
+    //     transactions: [
+    //       {
+    //         id: 1,
+    //         title: 'Salario',
+    //         amount: 3500,
+    //         type: 'deposit',
+    //         category: 'Dev',
+    //         created_at: new Date('2022-12-16'),
+    //       },
+    //       {
+    //         id: 2,
+    //         title: 'Aluguel',
+    //         amount: 1500,
+    //         type: 'withdraw',
+    //         category: 'Casa',
+    //         created_at: new Date('2022-12-20'),
+    //       },
+    //     ],
+    //   })
+    // },
     routes() {
       this.namespace = 'api'
       this.timing = 750

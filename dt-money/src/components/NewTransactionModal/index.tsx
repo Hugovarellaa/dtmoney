@@ -33,7 +33,7 @@ export function NewTransactionModal() {
   const { handleCloseModal, modalIsOpen } = useModal()
   const [type, setType] = useState<'deposit' | 'withdraw'>('deposit')
 
-  const { register, handleSubmit, formState } = useForm<FormData>({
+  const { register, handleSubmit, formState, reset } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
       title: '',
@@ -46,9 +46,17 @@ export function NewTransactionModal() {
 
   async function handleCreateTransaction(values: FormData) {
     const { title, amount, category } = values
-    const data = { title, amount, category, type }
+    const data = {
+      title,
+      amount,
+      category,
+      type,
+      created_at: new Date(),
+    }
 
     await api.post('/transactions', data)
+    handleCloseModal()
+    reset()
   }
 
   return (
