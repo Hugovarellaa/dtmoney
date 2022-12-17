@@ -14,6 +14,7 @@ import { useState } from 'react'
 import closeImg from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
+import { api } from '../../services/axios'
 
 const schema = yup
   .object({
@@ -43,9 +44,11 @@ export function NewTransactionModal() {
 
   const { errors } = formState
 
-  function handleCreateTransaction(values: FormData) {
+  async function handleCreateTransaction(values: FormData) {
     const { title, amount, category } = values
-    console.log(title, amount, category, type)
+    const data = { title, amount, category, type }
+
+    await api.post('/transactions', data)
   }
 
   return (
