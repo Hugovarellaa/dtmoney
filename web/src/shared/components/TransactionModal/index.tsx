@@ -1,18 +1,59 @@
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import Modal from 'react-modal'
+import * as yup from 'yup'
 import { useModal } from '../../context/useModal'
 import {
   RadioButton,
   TransactionModalContainer,
   TransactionTypeContainer,
+  WarningForm,
 } from './styles'
 
+import closeIcon from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
+import { api } from '../../services/axios'
 
-import closeIcon from '../../assets/close.svg'
+const transactionSchemaValidation = yup
+  .object({
+    title: yup.string().required('Transação e obrigatório'),
+    amount: yup
+      .number()
+      .positive('O valor precisar ser acima de 0')
+      .required('Valor da transação e obrigatório'),
+    category: yup.string().required('A categoria e obrigatório'),
+  })
+  .required()
+
+type FormData = yup.InferType<typeof transactionSchemaValidation>
 
 export function TransactionModal() {
+  const [type, setType] = useState<'deposit' | 'withdraw'>('deposit')
   const { modalIsOpen, closeModal } = useModal()
+
+  const { register, handleSubmit, formState, reset } = useForm<FormData>({
+    resolver: yupResolver(transactionSchemaValidation),
+    defaultValues: {
+      title: '',
+      amount: 0,
+      category: '',
+    },
+  })
+  const { errors } = formState
+
+  const handleCreateTransaction = async ({
+    title,
+    amount,
+    category,
+  }: FormData) => {
+    const data = { title, amount, category, type, created_at: new Date() }
+    await api.post('/transactions', data)
+    closeModal()
+    reset()
+  }
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -23,21 +64,41 @@ export function TransactionModal() {
       <button className="closeIcon" onClick={closeModal}>
         <img src={closeIcon} alt="" />
       </button>
-      <TransactionModalContainer>
+      <TransactionModalContainer
+        onSubmit={handleSubmit(handleCreateTransaction)}
+      >
         <h2>Cadastrar transação</h2>
-        <input type="text" placeholder="Título" />
-        <input type="number" placeholder="Valor" />
+        <input type="text" placeholder="Título" {...register('title')} />
+        {errors.title && <WarningForm>{errors.title.message}</WarningForm>}
+
+        <input type="number" placeholder="Valor" {...register('amount')} />
+        {errors.amount && <WarningForm>{errors.amount.message}</WarningForm>}
+
         <TransactionTypeContainer>
-          <RadioButton>
+          <RadioButton
+            type="button"
+            onClick={() => setType('deposit')}
+            isActive={type === 'deposit'}
+            activeColor="green"
+          >
             <img src={incomeImg} alt="Entradas" />
             <span>Entradas</span>
           </RadioButton>
-          <RadioButton>
+          <RadioButton
+            type="button"
+            onClick={() => setType('withdraw')}
+            isActive={type === 'withdraw'}
+            activeColor="red"
+          >
             <img src={outcomeImg} alt="Saídas" />
             <span>Saídas</span>
           </RadioButton>
         </TransactionTypeContainer>
-        <input type="text" placeholder="Categoria" />
+        <input type="text" placeholder="Categoria" {...register('category')} />
+        {errors.category && (
+          <WarningForm>{errors.category.message}</WarningForm>
+        )}
+
         <button type="submit">Cadastrar</button>
       </TransactionModalContainer>
     </Modal>
