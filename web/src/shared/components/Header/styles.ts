@@ -19,7 +19,7 @@ export const HeaderContent = styled.div`
 export const ButtonNewTransaction = styled.button`
   font-size: 1rem;
   color: ${({ theme }) => theme.colors.shape};
-  background-color: ${({ theme }) => theme.colors['blue-ligh']};
+  background-color: ${({ theme }) => theme.colors['blue-light']};
   border-radius: 0.25rem;
   border: 0;
   padding: 0 2rem;
