@@ -7,6 +7,6 @@ export const defaultTheme = {
     shape: '#FFFFFF',
     title: '#363F5F',
     text: '#969CB2',
-    background: '#969CB2',
+    background: '#F0F2F5',
   },
 } as const
