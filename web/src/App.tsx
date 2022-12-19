@@ -1,9 +1,11 @@
+import { ThemeProvider } from "styled-components";
 import { Home } from "./pages/Home";
+import defaultTheme from "./shared/styles/theme/defaultTheme";
 
 export function App() {
   return (
-    <div>
+    <ThemeProvider theme={defaultTheme}>
       <Home />
-    </div>
+    </ThemeProvider>
   );
 }
