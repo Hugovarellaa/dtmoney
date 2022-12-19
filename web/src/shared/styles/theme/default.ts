@@ -9,5 +9,7 @@ export const defaultTheme = {
     text: '#969CB2',
     background: '#F0F2F5',
     'overlay-modal': '#00000080',
+    input: '#e7e9ee',
+    border: '#d7d7d7',
   },
 } as const

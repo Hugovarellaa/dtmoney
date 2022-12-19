@@ -68,6 +68,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .react-modal-content{
+    width: 100%;
+    max-width: 576px;
     position: relative;
     background: ${({ theme }) => theme.colors.background};
     padding: 3rem;
@@ -78,9 +80,10 @@ export const GlobalStyles = createGlobalStyle`
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    border: 0;
+    border: none;
     background-color: transparent;
     color: ${({ theme }) => theme.colors.text};
+    line-height: 0;
 
     transition: filter .2s;
 
