@@ -33,13 +33,15 @@ export function TransactionTable() {
                 <TransactionTableTd>{transaction.title}</TransactionTableTd>
                 <TransactionTableTd type={transaction.type}>
                   {transaction.type === 'withdraw' && ' -'}
-                  {transaction.amount}
+                  {new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  }).format(transaction.amount)}
                 </TransactionTableTd>
                 <TransactionTableTd>{transaction.category}</TransactionTableTd>
                 <TransactionTableTd>
                   {new Intl.DateTimeFormat('pt-BR').format(
-                    // eslint-disable-next-line prettier/prettier
-                    new Date(transaction.created_at)
+                    new Date(transaction.created_at),
                   )}
                 </TransactionTableTd>
               </TransactionTableTr>
