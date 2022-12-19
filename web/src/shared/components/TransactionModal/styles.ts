@@ -87,3 +87,10 @@ export const RadioButton = styled.button<RadioButtonProps>`
     border-color: ${({ theme }) => darken(0.1, theme.colors.border)};
   }
 `
+export const WarningForm = styled.p`
+  color: ${({ theme }) => theme.colors.red};
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+`
