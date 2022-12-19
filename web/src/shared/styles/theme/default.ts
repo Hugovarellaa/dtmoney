@@ -1,7 +1,7 @@
 export const defaultTheme = {
   colors: {
     blue: '#5429CC',
-    'blue-ligh': '#6933FF',
+    'blue-light': '#6933FF',
     red: '#E52E4D',
     green: '#33CC95',
     shape: '#FFFFFF',
