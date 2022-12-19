@@ -1,15 +1,12 @@
+import { Transaction } from './components/Transaction'
 import { SummaryContainer } from './styles'
 
 export function Summary() {
   return (
     <SummaryContainer>
-      <div>
-        <header>
-          <p>Entradas</p>
-          <img src="" alt="" />
-        </header>
-        <strong>R$ 17.400,00</strong>
-      </div>
+      <Transaction name="Entradas" amount={17400} type="income" />
+      <Transaction name="Saídas" amount={1259} type="outcome" />
+      <Transaction name="Total" amount={16141} type="total" />
     </SummaryContainer>
   )
 }
