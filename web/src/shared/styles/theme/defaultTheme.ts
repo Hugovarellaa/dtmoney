@@ -12,4 +12,4 @@ export default {
     input: "#E7E9EE",
     border: "#D7D7D7",
   },
-};
+} as const;
