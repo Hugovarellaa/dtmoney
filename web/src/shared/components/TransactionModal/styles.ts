@@ -1,3 +1,4 @@
+import { darken } from 'polished'
 import styled from 'styled-components'
 
 export const TransactionModalContainer = styled.form`
@@ -67,5 +68,9 @@ export const RadioButton = styled.button`
   span {
     color: 1px solid ${({ theme }) => theme.colors.title};
     font-size: 1rem;
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => darken(0.1, theme.colors.border)};
   }
 `
