@@ -48,7 +48,7 @@ export function TransactionModal() {
     amount,
     category,
   }: FormData) => {
-    const data = { title, amount, category, type }
+    const data = { title, amount, category, type, created_at: new Date() }
     await api.post('/transactions', data)
     closeModal()
     reset()

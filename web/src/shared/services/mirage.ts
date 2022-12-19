@@ -10,10 +10,13 @@ export function makeServer() {
       this.namespace = 'api'
       this.timing = 750
 
-      this.get('/transactions')
+      this.get('/transactions', () => {
+        return this.schema.all('transaction')
+      })
+
       this.post('/transactions', (schema, request) => {
         const data = JSON.parse(request.requestBody)
-        return data
+        return this.schema.create('transaction', data)
       })
 
       this.namespace = ''

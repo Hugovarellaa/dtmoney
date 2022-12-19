@@ -50,3 +50,15 @@ export const TransactionTableTd = styled.td<TypeProps>`
     color: ${({ theme }) => theme.colors.title};
   }
 `
+export const TransactionNull = styled.span`
+  width: 100%;
+  padding: 1rem 2rem;
+  color: ${({ theme }) => theme.colors.blue};
+  font-size: 2rem;
+  line-height: 2rem;
+
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
