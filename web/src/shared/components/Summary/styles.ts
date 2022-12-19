@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const SummaryContainer = styled.div`
-  max-width: 70rem;
-  margin: 0 auto;
-  padding: 2.5rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: -8rem;
 `

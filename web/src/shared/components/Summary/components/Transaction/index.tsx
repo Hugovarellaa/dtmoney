@@ -14,7 +14,7 @@ interface TransactionProps {
   title: string
   icon: 'income' | 'outcome' | 'total'
   amount: string
-  total?: boolean
+  totalActive?: boolean
 }
 
 const image = {
@@ -27,15 +27,18 @@ export function Transaction({
   title,
   icon,
   amount,
-  total = false,
+  totalActive = false,
 }: TransactionProps) {
   return (
-    <TransactionContainer total={total}>
+    <TransactionContainer totalActive={totalActive}>
       <TransactionHeader>
-        <TransactionParagraph total={total}>{title}</TransactionParagraph>
+        <TransactionParagraph totalActive={totalActive}>
+          {title}
+        </TransactionParagraph>
         <TransactionImage src={image[icon]} />
       </TransactionHeader>
-      <TransactionStrong total={total}>{amount}</TransactionStrong>
+
+      <TransactionStrong totalActive={totalActive}>{amount}</TransactionStrong>
     </TransactionContainer>
   )
 }
