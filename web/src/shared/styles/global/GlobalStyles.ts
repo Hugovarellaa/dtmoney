@@ -78,7 +78,15 @@ export const GlobalStyles = createGlobalStyle`
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    color: ${({ theme }) => theme.colors.text}
+    border: 0;
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.text};
+
+    transition: filter .2s;
+
+    &:hover{
+      filter: brightness(0.5);
+    }
   }
 
 `
