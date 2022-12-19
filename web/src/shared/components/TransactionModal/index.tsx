@@ -5,7 +5,12 @@ import { TransactionModalContainer } from './styles'
 export function TransactionModal() {
   const { modalIsOpen, closeModal } = useModal()
   return (
-    <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
+    <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      overlayClassName="react-modal-overlay"
+      className="react-modal-content"
+    >
       <TransactionModalContainer>
         <h2>Modal aberto</h2>
       </TransactionModalContainer>
