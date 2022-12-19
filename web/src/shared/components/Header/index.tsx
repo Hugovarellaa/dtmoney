@@ -1,5 +1,13 @@
-import { HeaderContainer } from './styles'
+import { Logo } from '../Logo'
+import { HeaderContainer, HeaderContent, NewTransactionButton } from './styles'
 
 export function Header() {
-  return <HeaderContainer></HeaderContainer>
+  return (
+    <HeaderContainer>
+      <HeaderContent>
+        <Logo />
+        <NewTransactionButton>Nova transação</NewTransactionButton>
+      </HeaderContent>
+    </HeaderContainer>
+  )
 }
