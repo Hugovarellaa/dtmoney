@@ -1,7 +1,9 @@
+import { Home } from "./pages/Home";
+
 export function App() {
   return (
     <div>
-      <h1>Primeiro render</h1>
+      <Home />
     </div>
   );
 }
