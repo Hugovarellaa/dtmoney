@@ -1,4 +1,4 @@
-import { darken } from 'polished'
+import { darken, transparentize } from 'polished'
 import styled from 'styled-components'
 
 export const TransactionModalContainer = styled.form`
@@ -54,11 +54,22 @@ export const TransactionTypeContainer = styled.div`
   gap: 0.5rem;
 `
 
-export const RadioButton = styled.button`
+interface RadioButtonProps {
+  isActive: boolean
+  activeColor: 'green' | 'red'
+}
+
+const colors = {
+  red: '#E52E4D',
+  green: '#33CC95',
+} as const
+
+export const RadioButton = styled.button<RadioButtonProps>`
   height: 4rem;
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 0.25rem;
-  background-color: transparent;
+  background-color: ${({ activeColor, isActive }) =>
+    isActive ? transparentize(0.9, colors[activeColor]) : 'transparent'};
 
   display: flex;
   align-items: center;
