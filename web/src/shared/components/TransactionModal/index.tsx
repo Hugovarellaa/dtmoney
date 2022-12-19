@@ -14,7 +14,6 @@ import {
 import closeIcon from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
-import { api } from '../../services/axios'
 
 const transactionSchemaValidation = yup
   .object({
@@ -31,7 +30,7 @@ type FormData = yup.InferType<typeof transactionSchemaValidation>
 
 export function TransactionModal() {
   const [type, setType] = useState<'deposit' | 'withdraw'>('deposit')
-  const { modalIsOpen, closeModal } = useModal()
+  const { modalIsOpen, closeModal, createTransaction } = useModal()
 
   const { register, handleSubmit, formState, reset } = useForm<FormData>({
     resolver: yupResolver(transactionSchemaValidation),
@@ -48,8 +47,7 @@ export function TransactionModal() {
     amount,
     category,
   }: FormData) => {
-    const data = { title, amount, category, type, created_at: new Date() }
-    await api.post('/transactions', data)
+    await createTransaction({ title, amount, category, type })
     closeModal()
     reset()
   }

@@ -16,11 +16,14 @@ interface Transaction {
   created_at: Date
 }
 
+type TransactionData = Omit<Transaction, 'id' | 'created_at'>
+
 interface ModalContextData {
   transactions: Transaction[]
   modalIsOpen: boolean
   openModal: () => void
   closeModal: () => void
+  createTransaction: (data: TransactionData) => Promise<void>
 }
 
 interface ModalProviderProps {
@@ -42,13 +45,24 @@ export function ModalProvider({ children }: ModalProviderProps) {
   }
 
   async function fetchApi() {
-    const response = await api.get('/transactions')
-    setTransactions(response.data.transactions)
+    await api
+      .get('/transactions')
+      .then((response) => setTransactions(response.data.transactions))
+  }
+
+  async function createTransaction(transactionInput: TransactionData) {
+    const response = await api.post('/transactions', {
+      ...transactionInput,
+      created_at: new Date(),
+    })
+    const transactions = response.data.transaction
+
+    setTransactions((oldState) => [...oldState, transactions])
   }
 
   useEffect(() => {
     fetchApi()
-  }, [transactions])
+  }, [])
 
   return (
     <ModalContext.Provider
@@ -57,6 +71,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
         modalIsOpen,
         openModal,
         closeModal,
+        createTransaction,
       }}
     >
       {children}
