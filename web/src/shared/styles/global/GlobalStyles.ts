@@ -25,10 +25,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body, input, button {
-    font-family: ;
-    font-size: ;
-    font-weight: ;
-    line-height: ;
+    font-family: "Poppins";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 600;
   }
 
   button {
