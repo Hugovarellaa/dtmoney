@@ -1,3 +1,4 @@
+import Modal from 'react-modal'
 import { ThemeProvider } from 'styled-components'
 import { Home } from './pages/Home'
 import { ModalProvider } from './shared/context/useModal'
@@ -7,6 +8,9 @@ import { defaultTheme } from './shared/styles/theme/default'
 if (process.env.NODE_ENV !== 'production') {
   makeServer()
 }
+
+Modal.setAppElement('#root')
+
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
