@@ -20,8 +20,8 @@ export const GlobalStyles = createGlobalStyle`
 
 
   body{
-    background-color: black;
-    color: white;
+    background-color: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   body, input, button {
