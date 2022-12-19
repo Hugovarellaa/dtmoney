@@ -14,6 +14,7 @@ import {
 import closeIcon from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
+import { api } from '../../services/axios'
 
 const transactionSchemaValidation = yup
   .object({
@@ -32,7 +33,7 @@ export function TransactionModal() {
   const [type, setType] = useState<'deposit' | 'withdraw'>('deposit')
   const { modalIsOpen, closeModal } = useModal()
 
-  const { register, handleSubmit, formState } = useForm<FormData>({
+  const { register, handleSubmit, formState, reset } = useForm<FormData>({
     resolver: yupResolver(transactionSchemaValidation),
     defaultValues: {
       title: '',
@@ -42,9 +43,15 @@ export function TransactionModal() {
   })
   const { errors } = formState
 
-  const onSubmit = ({ title, amount, category }: FormData) => {
+  const handleCreateTransaction = async ({
+    title,
+    amount,
+    category,
+  }: FormData) => {
     const data = { title, amount, category, type }
-    console.log(data)
+    await api.post('/transactions', data)
+    closeModal()
+    reset()
   }
 
   return (
@@ -57,7 +64,9 @@ export function TransactionModal() {
       <button className="closeIcon" onClick={closeModal}>
         <img src={closeIcon} alt="" />
       </button>
-      <TransactionModalContainer onSubmit={handleSubmit(onSubmit)}>
+      <TransactionModalContainer
+        onSubmit={handleSubmit(handleCreateTransaction)}
+      >
         <h2>Cadastrar transação</h2>
         <input type="text" placeholder="Título" {...register('title')} />
         {errors.title && <WarningForm>{errors.title.message}</WarningForm>}
