@@ -72,8 +72,13 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.colors.background};
     padding: 3rem;
     border-radius: 0.25rem;
+  }
 
-
+  .closeIcon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: ${({ theme }) => theme.colors.text}
   }
 
 `
