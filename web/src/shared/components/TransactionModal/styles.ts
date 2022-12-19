@@ -65,6 +65,8 @@ export const RadioButton = styled.button`
   justify-content: center;
   gap: 1rem;
 
+  transition: border-color 0.2s;
+
   span {
     color: 1px solid ${({ theme }) => theme.colors.title};
     font-size: 1rem;
