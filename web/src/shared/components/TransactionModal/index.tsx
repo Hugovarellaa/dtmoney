@@ -6,11 +6,13 @@ import {
   TransactionType,
 } from './styles'
 
+import { useState } from 'react'
 import closeIcon from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 
 export function TransactionModal() {
+  const [type, setType] = useState<'withdraw' | 'deposit'>('deposit')
   const { modalIsOpen, closeModal } = useModal()
   return (
     <Modal
@@ -28,11 +30,21 @@ export function TransactionModal() {
         <input type="number" placeholder="Valor" />
 
         <TransactionType>
-          <RadioButton>
+          <RadioButton
+            type="button"
+            isActive={type === 'deposit'}
+            activeColor="green"
+            onClick={() => setType('deposit')}
+          >
             <span>Entrada</span>
             <img src={incomeImg} alt="Entrada" />
           </RadioButton>
-          <RadioButton>
+          <RadioButton
+            type="button"
+            isActive={type === 'withdraw'}
+            activeColor="red"
+            onClick={() => setType('withdraw')}
+          >
             <span>Saída</span>
             <img src={outcomeImg} alt="Saída" />
           </RadioButton>
