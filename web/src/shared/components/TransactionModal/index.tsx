@@ -17,7 +17,11 @@ export function TransactionModal() {
         <img src={closeIcon} alt="" />
       </button>
       <TransactionModalContainer>
-        <h2>Modal aberto</h2>
+        <h2>Cadastrar transação</h2>
+        <input type="text" placeholder="Nome" />
+        <input type="number" placeholder="Valor" />
+        <input type="text" placeholder="Categoria" />
+        <button type="submit">Cadastrar</button>
       </TransactionModalContainer>
     </Modal>
   )
