@@ -14,6 +14,7 @@ interface TransactionType {
   name: string
   amount: number
   type: 'income' | 'outcome' | 'total'
+  lastTransaction?: boolean
 }
 
 const icon = {
@@ -22,14 +23,21 @@ const icon = {
   total: totalImg,
 } as const
 
-export function Transaction({ name, amount, type }: TransactionType) {
+export function Transaction({
+  name,
+  amount,
+  type,
+  lastTransaction = false,
+}: TransactionType) {
   return (
-    <TransactionContainer>
+    <TransactionContainer lastTransaction={lastTransaction}>
       <TransactionHeader>
-        <TransactionDetails>{name}</TransactionDetails>
+        <TransactionDetails lastTransaction={lastTransaction}>
+          {name}
+        </TransactionDetails>
         <TransactionImage src={icon[type]} alt="Entradas" />
       </TransactionHeader>
-      <TransactionAmount>
+      <TransactionAmount lastTransaction={lastTransaction}>
         {new Intl.NumberFormat('pt-br', {
           style: 'currency',
           currency: 'BRL',
