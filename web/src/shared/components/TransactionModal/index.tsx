@@ -1,5 +1,9 @@
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
 import Modal from 'react-modal'
+import * as yup from 'yup'
 import { useModal } from '../../context/useModal'
+
 import {
   RadioButton,
   TransactionModalContainer,
@@ -11,9 +15,30 @@ import closeIcon from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 
+const formSchema = yup
+  .object({
+    name: yup.string().required('O nome da transação e obrigatório'),
+    amount: yup.number().positive('O valor precisa ser maior que 0').required(),
+    category: yup.string().required('O nome da categoria e obrigatório'),
+  })
+  .required()
+
+type FormData = yup.InferType<typeof formSchema>
+
 export function TransactionModal() {
   const [type, setType] = useState<'withdraw' | 'deposit'>('deposit')
   const { modalIsOpen, closeModal } = useModal()
+
+  const { register, handleSubmit } = useForm<FormData>({
+    resolver: yupResolver(formSchema),
+    defaultValues: {
+      name: '',
+      amount: 0,
+      category: '',
+    },
+  })
+  const onSubmit = (data: FormData) => console.log(data)
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -24,10 +49,10 @@ export function TransactionModal() {
       <button onClick={closeModal} className="closeIcon">
         <img src={closeIcon} alt="" />
       </button>
-      <TransactionModalContainer>
+      <TransactionModalContainer onSubmit={handleSubmit(onSubmit)}>
         <h2>Cadastrar transação</h2>
-        <input type="text" placeholder="Nome" />
-        <input type="number" placeholder="Valor" />
+        <input type="text" placeholder="Nome" {...register('name')} />
+        <input type="number" placeholder="Valor" {...register('amount')} />
 
         <TransactionType>
           <RadioButton
@@ -50,7 +75,7 @@ export function TransactionModal() {
           </RadioButton>
         </TransactionType>
 
-        <input type="text" placeholder="Categoria" />
+        <input type="text" placeholder="Categoria" {...register('category')} />
         <button type="submit">Cadastrar</button>
       </TransactionModalContainer>
     </Modal>

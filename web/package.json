@@ -11,11 +11,14 @@
     "lint:fix": "eslint src --ext .ts,.tsx --fix"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
     "axios": "^1.2.1",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-modal": "^3.16.1"
+    "react-hook-form": "^7.41.0",
+    "react-modal": "^3.16.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.1.3",
