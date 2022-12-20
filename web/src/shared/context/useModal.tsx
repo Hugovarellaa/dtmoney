@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface ModalContextData {
   modalIsOpen: boolean
@@ -34,3 +34,5 @@ export function ModalProvider({ children }: ModalProviderProps) {
     </ModalContext.Provider>
   )
 }
+
+export const useModal = () => useContext(ModalContext)

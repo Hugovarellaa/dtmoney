@@ -10,6 +10,7 @@ export function App() {
       <ModalProvider>
         <Home />
       </ModalProvider>
+
       <GlobalStyles />
     </ThemeProvider>
   )
