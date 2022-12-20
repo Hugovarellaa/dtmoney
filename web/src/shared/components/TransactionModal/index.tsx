@@ -15,6 +15,7 @@ import { useState } from 'react'
 import closeIcon from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
+import { useTransaction } from '../../context/useTransaction'
 
 const formSchema = yup
   .object({
@@ -29,8 +30,9 @@ type FormData = yup.InferType<typeof formSchema>
 export function TransactionModal() {
   const [type, setType] = useState<'withdraw' | 'deposit'>('deposit')
   const { modalIsOpen, closeModal } = useModal()
+  const { createTransaction } = useTransaction()
 
-  const { register, handleSubmit, formState } = useForm<FormData>({
+  const { register, handleSubmit, formState, reset } = useForm<FormData>({
     resolver: yupResolver(formSchema),
     defaultValues: {
       name: '',
@@ -41,7 +43,12 @@ export function TransactionModal() {
 
   const { errors } = formState
 
-  const onSubmit = (data: FormData) => console.log(data)
+  const onSubmit = async ({ name, amount, category }: FormData) => {
+    const data = { name, amount, category, type }
+    await createTransaction(data)
+    closeModal()
+    reset()
+  }
 
   return (
     <Modal
