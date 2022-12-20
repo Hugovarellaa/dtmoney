@@ -48,3 +48,33 @@ export const TransactionModalContainer = styled.form`
     }
   }
 `
+export const TransactionType = styled.div`
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+`
+
+export const RadioButton = styled.button`
+  height: 3rem;
+  border-radius: 0.25rem;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  span {
+    font-size: 1rem;
+    color: ${({ theme }) => theme.colors.title};
+    line-height: 24px;
+    font-weight: 400;
+  }
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+`

@@ -1,8 +1,14 @@
 import Modal from 'react-modal'
 import { useModal } from '../../context/useModal'
-import { TransactionModalContainer } from './styles'
+import {
+  RadioButton,
+  TransactionModalContainer,
+  TransactionType,
+} from './styles'
 
 import closeIcon from '../../assets/close.svg'
+import incomeImg from '../../assets/income.svg'
+import outcomeImg from '../../assets/outcome.svg'
 
 export function TransactionModal() {
   const { modalIsOpen, closeModal } = useModal()
@@ -20,6 +26,18 @@ export function TransactionModal() {
         <h2>Cadastrar transação</h2>
         <input type="text" placeholder="Nome" />
         <input type="number" placeholder="Valor" />
+
+        <TransactionType>
+          <RadioButton>
+            <span>Entrada</span>
+            <img src={incomeImg} alt="Entrada" />
+          </RadioButton>
+          <RadioButton>
+            <span>Saída</span>
+            <img src={outcomeImg} alt="Saída" />
+          </RadioButton>
+        </TransactionType>
+
         <input type="text" placeholder="Categoria" />
         <button type="submit">Cadastrar</button>
       </TransactionModalContainer>
