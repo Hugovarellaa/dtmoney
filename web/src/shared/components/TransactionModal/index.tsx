@@ -17,13 +17,15 @@ import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 import { useTransaction } from '../../context/useTransaction'
 
-const formSchema = yup
-  .object({
-    name: yup.string().required('O nome da transação e obrigatório'),
-    amount: yup.number().positive('O valor precisa ser maior que 0').required(),
-    category: yup.string().required('O nome da categoria e obrigatório'),
-  })
-  .required()
+const formSchema = yup.object({
+  name: yup.string().required('O nome da transação e obrigatório'),
+  amount: yup
+    .number()
+    .positive('O valor precisa ser maior que 0')
+    .required('O valor é obrigatório')
+    .typeError('Digite um valor numérico'),
+  category: yup.string().required('O nome da categoria e obrigatório'),
+})
 
 type FormData = yup.InferType<typeof formSchema>
 
@@ -37,7 +39,7 @@ export function TransactionModal() {
     defaultValues: {
       name: '',
       amount: 0,
-      category: 'deposit',
+      category: '',
     },
   })
 

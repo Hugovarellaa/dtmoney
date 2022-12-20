@@ -12,7 +12,7 @@ import totalImg from '../../../../assets/total.svg'
 
 interface TransactionType {
   name: string
-  amount: number
+  amount: string
   type: 'income' | 'outcome' | 'total'
   lastTransaction?: boolean
 }
@@ -38,10 +38,7 @@ export function Transaction({
         <TransactionImage src={icon[type]} alt="Entradas" />
       </TransactionHeader>
       <TransactionAmount lastTransaction={lastTransaction}>
-        {new Intl.NumberFormat('pt-br', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format(amount)}
+        {amount}
       </TransactionAmount>
     </TransactionContainer>
   )
