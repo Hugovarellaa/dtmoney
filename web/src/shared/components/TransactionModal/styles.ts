@@ -96,3 +96,11 @@ export const RadioButton = styled.button<TypeProps>`
     border-color: ${({ theme }) => darken(0.1, theme.colors.border)};
   }
 `
+
+export const Warming = styled.span`
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.red};
+  line-height: 24px;
+  font-weight: 400;
+`

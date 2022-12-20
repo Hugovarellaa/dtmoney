@@ -8,6 +8,7 @@ import {
   RadioButton,
   TransactionModalContainer,
   TransactionType,
+  Warming,
 } from './styles'
 
 import { useState } from 'react'
@@ -29,7 +30,7 @@ export function TransactionModal() {
   const [type, setType] = useState<'withdraw' | 'deposit'>('deposit')
   const { modalIsOpen, closeModal } = useModal()
 
-  const { register, handleSubmit } = useForm<FormData>({
+  const { register, handleSubmit, formState } = useForm<FormData>({
     resolver: yupResolver(formSchema),
     defaultValues: {
       name: '',
@@ -37,6 +38,9 @@ export function TransactionModal() {
       category: '',
     },
   })
+
+  const { errors } = formState
+
   const onSubmit = (data: FormData) => console.log(data)
 
   return (
@@ -52,7 +56,10 @@ export function TransactionModal() {
       <TransactionModalContainer onSubmit={handleSubmit(onSubmit)}>
         <h2>Cadastrar transação</h2>
         <input type="text" placeholder="Nome" {...register('name')} />
+        {errors.name && <Warming>{errors.name?.message}</Warming>}
+
         <input type="number" placeholder="Valor" {...register('amount')} />
+        {errors.amount && <Warming>{errors.amount?.message}</Warming>}
 
         <TransactionType>
           <RadioButton
@@ -76,6 +83,8 @@ export function TransactionModal() {
         </TransactionType>
 
         <input type="text" placeholder="Categoria" {...register('category')} />
+        {errors.category && <Warming>{errors.category?.message}</Warming>}
+
         <button type="submit">Cadastrar</button>
       </TransactionModalContainer>
     </Modal>
