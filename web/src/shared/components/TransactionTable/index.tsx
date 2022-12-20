@@ -1,3 +1,4 @@
+import { useTransaction } from '../../context/useTransaction'
 import {
   Table,
   Tbody,
@@ -9,6 +10,7 @@ import {
 } from './styles'
 
 export function TransactionTable() {
+  const { transactions } = useTransaction()
   return (
     <TransactionTableContainer>
       <Table>
@@ -21,19 +23,25 @@ export function TransactionTable() {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>Desenvolvimento de website</Td>
-            <Td type="deposit">R$ 12.000,00</Td>
-            <Td>Dev</Td>
-            <Td>05/12/2022</Td>
-          </Tr>
+          {transactions.map((transaction) => (
+            <Tr key={transaction.id}>
+              <Td>{transaction.name}</Td>
+              <Td type={transaction.type}>
+                {transaction.type === 'withdraw' && ' -'}
 
-          <Tr>
-            <Td>Aluguel</Td>
-            <Td type="withdraw">- R$ 2.000,00</Td>
-            <Td>Casa</Td>
-            <Td>10/12/2022</Td>
-          </Tr>
+                {new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(transaction.amount)}
+              </Td>
+              <Td>{transaction.category}</Td>
+              <Td>
+                {new Intl.DateTimeFormat('pt-BR').format(
+                  new Date(transaction.created_at),
+                )}
+              </Td>
+            </Tr>
+          ))}
         </Tbody>
       </Table>
     </TransactionTableContainer>

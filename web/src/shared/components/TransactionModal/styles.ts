@@ -1,3 +1,4 @@
+import { darken, transparentize } from 'polished'
 import styled from 'styled-components'
 
 export const TransactionModalContainer = styled.form`
@@ -55,16 +56,29 @@ export const TransactionType = styled.div`
   gap: 0.5rem;
 `
 
-export const RadioButton = styled.button`
-  height: 3rem;
+interface TypeProps {
+  isActive: boolean
+  activeColor: 'red' | 'green'
+}
+
+const colors = {
+  green: '#33CC95',
+  red: '#E52E4D',
+}
+
+export const RadioButton = styled.button<TypeProps>`
+  height: 4rem;
   border-radius: 0.25rem;
   border: 1px solid ${({ theme }) => theme.colors.border};
-  background-color: transparent;
+  background-color: ${({ isActive, activeColor }) =>
+    isActive ? transparentize(0.9, colors[activeColor]) : 'transparent'};
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
+  transition: border-color 0.2s;
 
   span {
     font-size: 1rem;
@@ -77,4 +91,16 @@ export const RadioButton = styled.button`
     width: 25px;
     height: 25px;
   }
+
+  &:hover {
+    border-color: ${({ theme }) => darken(0.1, theme.colors.border)};
+  }
+`
+
+export const Warming = styled.span`
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.red};
+  line-height: 24px;
+  font-weight: 400;
 `

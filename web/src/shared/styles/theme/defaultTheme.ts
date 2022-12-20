@@ -9,6 +9,7 @@ export default {
     title: '#363F5F',
     text: '#969CB2',
     background: '#F0F2F5',
+
     input: '#E7E9EE',
     border: '#D7D7D7',
 
