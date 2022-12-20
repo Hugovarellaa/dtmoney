@@ -37,7 +37,7 @@ export function TransactionModal() {
     defaultValues: {
       name: '',
       amount: 0,
-      category: '',
+      category: 'deposit',
     },
   })
 
